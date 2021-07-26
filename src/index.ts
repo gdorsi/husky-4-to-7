@@ -86,7 +86,7 @@ export function run(removeV4Config: boolean): void {
       console.log(`husky - removed ${filepath}`)
     }
 
-    const str = JSON.parse(fs.readFileSync('package.json', 'utf-8'))
+    const str = fs.readFileSync('package.json', 'utf-8')
     const regex = /^[ ]+|\t+/m
     const indent = regex.exec(str)?.[0];
     const pkg = JSON.parse(str) // eslint-disable-line

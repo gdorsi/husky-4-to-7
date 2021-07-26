@@ -1,6 +1,6 @@
 {
   "name": "@dorsi/husky-4-to-7",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "bin": "lib/bin.js",
   "files": [
     "/lib"
