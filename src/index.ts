@@ -85,6 +85,17 @@ export function run(removeV4Config: boolean): void {
       fs.unlinkSync(filepath)
       console.log(`husky - removed ${filepath}`)
     }
+
+    const str = JSON.parse(fs.readFileSync('package.json', 'utf-8'))
+    const regex = /^[ ]+|\t+/m
+    const indent = regex.exec(str)?.[0];
+    const pkg = JSON.parse(str) // eslint-disable-line
+
+    if (pkg.scripts.postinstall === 'husky install') {
+      pkg.scripts.postinstall = "is-ci || husky install"
+      fs.writeFileSync('package.json', `${JSON.stringify(pkg, null, indent)}\n`)
+      console.log('husky - updated postinstall')
+    }
   }
 
   showManualUpdateMessage(hooks)
